@@ -68,9 +68,7 @@ module Guard
 
     def bundle_install
       Guard::Compat::UI.info 'Bundling...', reset: true
-      ::Bundler.with_clean_env do
-        system("bundle install#{" #{options[:cli]}" if options[:cli]}")
-      end
+      `bundle install #{options[:cli] if options[:cli]}`
       $? == 0 ? :bundle_installed : false
     end
   end
